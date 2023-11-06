@@ -1,0 +1,42 @@
+type: stereo
+image_format: yuyv
+brightness:
+   default: 4
+   range: [0,8]
+contrast:
+   default: 4
+   range: [0,8]
+hue:
+   default: 0
+   range: [0,11]
+saturation:
+   default: 4
+   range: [0,8]
+sharpness:
+    default: 4
+    range: [0,8]
+gamma:
+    default: 8
+    range: [1,9]
+gain:
+    default: 100
+    range: [0,100]
+exposure:
+    default: 100
+    range: [0,100]
+whitebalance_temperature:
+    default: 42
+    range: [28,65]
+auto_exposure_gain:
+    default: True
+    list: [True,False]
+auto_whitebalance:
+    default: True
+    list: [True,False]
+resolution:
+    default: 1280x720
+    list: [2208x1242,1920x1080,1280x720,672x376]
+video_format:
+    default: h264
+    list: [h264,h265]    
+
