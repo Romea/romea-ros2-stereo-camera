@@ -16,3 +16,7 @@ repositories:
         type: git
         url: git@gitlab-ssh.irstea.fr:romea_ros2/interfaces/sensors/romea_camera.git
         version: devel
+    romea_ros2/interfaces/sensors/romea_stereo_camera:
+        type: git
+        url: git@gitlab-ssh.irstea.fr:romea_ros2/interfaces/sensors/romea_stereo_camera.git
+        version: devel
