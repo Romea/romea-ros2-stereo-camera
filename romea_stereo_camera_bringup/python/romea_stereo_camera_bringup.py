@@ -13,8 +13,15 @@
 # limitations under the License.
 
 
-from romea_camera_bringup import CameraMetaDescription, robot_urdf_prefix, device_namespace
-from romea_stereo_camera_description import get_stereo_camera_specifications, get_stereo_camera_geometry, urdf
+from romea_camera_bringup import CameraMetaDescription
+from romea_camera_bringup import get_sensor_location as get_camera_location
+from romea_camera_bringup import get_sensor_configuration as get_camera_configuration
+from romea_common_bringup import robot_urdf_prefix, device_namespace
+from romea_stereo_camera_description import (
+    get_stereo_camera_specifications,
+    get_stereo_camera_geometry,
+    urdf,
+)
 
 
 class StereoCameraMetaDescription(CameraMetaDescription):
@@ -27,29 +34,30 @@ def load_meta_description(meta_description_file_path):
 
 
 def get_sensor_specifications(meta_description):
-    return get_stereo_camera_specifications(meta_description.get_type(), meta_description.get_model())
+    return get_stereo_camera_specifications(
+        meta_description.get_type(), meta_description.get_model()
+    )
 
 
 def get_sensor_geometry(meta_description):
     return get_stereo_camera_geometry(meta_description.get_type(), meta_description.get_model())
 
 
+def get_sensor_location(meta_description):
+    return get_camera_location(meta_description)
+
+
+def get_sensor_configuration(meta_description, ns="configuration"):
+    return get_camera_configuration(meta_description)
+
+
 def urdf_description(robot_namespace, mode, meta_description_file_path):
 
     meta_description = CameraMetaDescription(meta_description_file_path)
 
-    ros_namespace = device_namespace(robot_namespace, meta_description.get_namespace(), meta_description.get_name())
-
-    configuration = {}
-    configuration["frame_rate"] = meta_description.get_frame_rate()
-    configuration["resolution"] = meta_description.get_resolution()
-    configuration["horizontal_fov"] = meta_description.get_horizontal_fov()
-    configuration["video_format"] = meta_description.get_video_format()
-
-    geometry = {}
-    geometry["parent_link"] = meta_description.get_parent_link()
-    geometry["xyz"] = meta_description.get_xyz()
-    geometry["rpy"] = meta_description.get_rpy_rad()
+    ros_namespace = device_namespace(
+        robot_namespace, meta_description.get_namespace(), meta_description.get_name()
+    )
 
     return urdf(
         robot_urdf_prefix(robot_namespace),
@@ -57,7 +65,7 @@ def urdf_description(robot_namespace, mode, meta_description_file_path):
         meta_description.get_name(),
         meta_description.get_type(),
         meta_description.get_model(),
-        configuration,
-        geometry,
+        get_sensor_configuration(meta_description),
+        get_sensor_location(meta_description),
         ros_namespace,
     )
