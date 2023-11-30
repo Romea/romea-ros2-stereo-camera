@@ -119,7 +119,7 @@
 
 
         <gazebo reference="${link_name}">
-
+          <material>Gazebo/DarkYellow </material>
           <sensor type="multicamera" name="${prefix}${name}">
             <update_rate>${frame_rate}</update_rate>
             <camera name="left">
@@ -191,6 +191,7 @@
                   <remapping>camera/right/image_raw/theora:=right/image_raw/theora</remapping>
                 </ros>
                 <camera_name>camera</camera_name>
+                <frame_name>${link_name}</frame_name>
             </plugin>
           </sensor>
         </gazebo>
