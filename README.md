@@ -1,6 +1,6 @@
 # romea_ros2_stereo_camera #
 
-This stack contains several ROS2 packages for working with camera sensors, both in real-world applications and simulations. For more detailed information, please refer to the README files of each individual package.
+This project contains several ROS2 packages for working with stereo camera sensors, both in real-world applications and simulations. For more detailed information, please refer to the README files of each individual package.
 
 ## **Usage**
 
@@ -10,7 +10,7 @@ This stack contains several ROS2 packages for working with camera sensors, both 
 4. wget https://raw.githubusercontent.com/Romea/romea-ros2-stereo-camera/refs/heads/main/romea_stereo_camera_public.repos
 5. vcs import src < romea_stereo_camera_public.repos
 6. colcon build
-7. see bringup package to launch camera
+7. see bringup package to launch stereo camera
 
 ## **Contributing**
 
