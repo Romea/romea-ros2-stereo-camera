@@ -1,13 +1,15 @@
+# romea_stereo_camera_bringup #
+
 # 1) Overview #
 
 The romea_stereo_camera_bringup package provides  : 
 
- - launch files able to launch ros2 camera drivers according a meta-description file provided by user (see next section for camera meta-description file overview), supported drivers are :
+ - **Launch files** able to launch ros2 camera drivers according a meta-description file provided by user (see next section for camera meta-description file overview), supported drivers are :
 
    - [???](TODO(Jean))
    - [???](TODO(Jean))
 
-   It is possible to launch a driver via command line : 
+   To launch a driver via command line, use:
 
     ```console
     ros2 launch romea_stereo_camera_bringup camera_driver.launch.py robot_namespace:=robot meta_description_file_path:=/path_to_file/meta_description_file.yaml
@@ -18,9 +20,9 @@ The romea_stereo_camera_bringup package provides  :
    - *robot_namespace* is the name of the robot 
    - *meta_description_file_path* is the absolute path of meta-description file    
 
- - a python module able to load and parse stereo camera meta-description file as well as to create URDF description of the stereo camera according a given meta-description.
+ - A **Python module** able to load and parse stereo camera meta-description file as well as to create URDF description of the stereo camera according a given meta-description.
 
- - a ros2 python executable able to create stereo camera URDF description via command line according a given meta-description file  :
+ - A **ros2 python executable** able to create stereo camera URDF description via command line according a given meta-description file  :
 
   ```console
   ros2 run romea_stereo_camera_bringup urdf_description.py robot_namespace:robot meta_description_file_path:/path_to_file/meta_description_file.yaml > camera.urdf`
@@ -37,7 +39,12 @@ The romea_stereo_camera_bringup package provides  :
 
 # 2) Stereo camera meta-description #
 
-As seen below stereocamera meta-description file is a yaml file constituted by five items. The first item is the name of sensor defined by user. The second one is the configuration of ROS2 driver used to control stereo camera (see section 4 for more explanations). The third item provides basics specifications of the camera and the fourth item specifies where the camera is located on the robot, these informations will be used to create URDF description and by user to configure its algorithms.  Finally, the last item gives the topics to be recorded into the ROS bag during experiments or simulation. Thanks to remappings written into launch files, stereo camera topics are always the same names for each drivers or simulator plugins.       
+The stereo camera meta-description file is a YAML file with the following five main items:
+- name: Specifies the name of the camera.
+- driver: Specifies the configuration for the ROS2 driver used to control the stereo camera (see Section 5 for more details).
+- configuration: Defines basic specifications of the camera, such as type, model, resolution, field of view, frame rate, and video format.
+- geometry: Defines the position and orientation of the robot, with its position and orientation, used for URDF creation.
+- records: Specifies the topics that will be recorded in ROS bags during experiments or simulations. Remappings ensure the GPS topics have consistent names across drivers and simulation.
 
 Example :
 ```yaml
@@ -64,14 +71,14 @@ records: # topic to be recorded
 
 # 4) Supported  stereo camera models
 
-Supported stereo camera are listed in the following table :
+The supported camera models are listed below:
 
 |  type  |   model    |
 | :----: | :--------: |
 | zed    |     1      |
 | zed    |     2      |
 
-You can find specifications of each camera in config directory of romea_camera_description package.
+For detailed specifications, refer to the config directory within the romea_camera_description package.
 
 # 5) Supported stereo camera ROS2 drivers
 

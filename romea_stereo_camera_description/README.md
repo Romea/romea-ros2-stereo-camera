@@ -1,3 +1,5 @@
+# romea_stereo_camera_description #
+
 # 1 Overview #
 
 This package contains the description of stereo camera sensors used in romea projects
